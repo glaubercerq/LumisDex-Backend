@@ -5,14 +5,14 @@ import {
   getPokemonList, 
   getPokemonByType,
   searchPokemon 
-} from '../services/pokemonService.js';
-import { AppError } from '../middlewares/errorHandler.js';
-import logger from '../utils/logger.js';
+} from '../services/pokemonService';
+import { AppError } from '../middlewares/errorHandler';
+import logger from '../utils/logger';
 import type { 
   ListPokemonsResponse, 
   GetPokemonResponse, 
   SearchPokemonResponse 
-} from '../types/dtos.js';
+} from '../types/dtos';
 
 export async function listPokemons(
   req: Request, 

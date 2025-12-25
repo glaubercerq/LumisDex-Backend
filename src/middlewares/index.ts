@@ -1,3 +1,3 @@
-export * from './errorHandler.js';
-export * from './requestLogger.js';
+export * from './errorHandler';
+export * from './requestLogger';
 

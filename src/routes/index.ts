@@ -1,9 +1,11 @@
 import { Router } from 'express';
-import pokemonRoutes from './pokemonRoutes.js';
+import pokemonRoutes from './pokemonRoutes';
+import favoriteRoutes from './favoriteRoutes';
 
 const router = Router();
 
 router.use('/pokemon', pokemonRoutes);
+router.use('/favorites', favoriteRoutes);
 
 router.get('/health', (_req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });

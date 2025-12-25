@@ -1,14 +1,14 @@
-import { config } from '../config/index.js';
-import { httpGet } from '../utils/httpClient.js';
-import { getFromCache, setInCache } from './cacheService.js';
-import logger from '../utils/logger.js';
+import { config } from '../config/index';
+import { httpGet } from '../utils/httpClient';
+import { getFromCache, setInCache } from './cacheService';
+import logger from '../utils/logger';
 import type { 
   Pokemon, 
   PokemonApiResponse, 
   PokemonListResponse,
   TypeApiResponse,
   PaginatedResponse 
-} from '../types/pokemon.js';
+} from '../types/pokemon';
 
 const BASE_URL = config.pokeApi.baseUrl;
 

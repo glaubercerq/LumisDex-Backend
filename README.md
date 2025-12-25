@@ -88,14 +88,39 @@ Query params:
   - q (string): Termo de busca
 ```
 
-## 🗃️ Configuração Redis (Opcional)
+## 🐳 Docker
 
-O Redis é usado para cache, mas a aplicação funciona sem ele.
+### Desenvolvimento
+
+Para desenvolvimento, use o docker-compose.dev.yml que inicia apenas PostgreSQL e Redis:
 
 ```bash
-# Docker
-docker run -d -p 6379:6379 redis:alpine
+docker-compose -f docker-compose.dev.yml up -d
 ```
+
+### Produção
+
+Para produção, use o docker-compose.yml que inicia todos os serviços:
+
+```bash
+docker-compose up -d
+```
+
+### Build da aplicação
+
+```bash
+docker build -t lumisdex-backend .
+```
+
+## 🗃️ Configuração de Serviços
+
+### PostgreSQL
+
+O PostgreSQL é usado para persistência de dados (favoritos). As migrations são executadas automaticamente na inicialização.
+
+### Redis (Opcional)
+
+O Redis é usado para cache, mas a aplicação funciona sem ele.
 
 ## 📋 Variáveis de Ambiente
 
@@ -103,8 +128,16 @@ docker run -d -p 6379:6379 redis:alpine
 |----------|-----------|---------|
 | PORT | Porta do servidor | 3001 |
 | NODE_ENV | Ambiente | development |
+| POSTGRES_HOST | Host do PostgreSQL | localhost |
+| POSTGRES_PORTA | Porta do PostgreSQL | 5432 |
+| POSTGRES_USER | Usuário do PostgreSQL | postgres |
+| POSTGRES_PASSWORD | Senha do PostgreSQL | root |
+| POSTGRES_DB | Nome do banco de dados | postgres |
+| POSTGRES_SCHEMA | Schema do banco | lumisdex_local |
+| POSTGRES_SYNC | Sincronização automática | false |
+| POSTGRES_MIGRATIONS_RUN | Executar migrations | true |
+| POSTGRES_SSL | Usar SSL | false |
 | REDIS_URL | URL do Redis | redis://localhost:6379 |
-| DATABASE_URL | URL do PostgreSQL | - |
 | POKEAPI_BASE_URL | URL da PokéAPI | https://pokeapi.co/api/v2 |
 | CACHE_TTL | TTL do cache (segundos) | 3600 |
 
