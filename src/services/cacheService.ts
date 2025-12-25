@@ -1,5 +1,6 @@
 import Redis from 'ioredis';
 import { config } from '../config/index.js';
+import logger from '../utils/logger.js';
 
 let redis: Redis | null = null;
 
@@ -10,7 +11,7 @@ export function getRedisClient(): Redis | null {
         maxRetriesPerRequest: 3,
         retryStrategy: (times) => {
           if (times > 3) {
-            console.warn('Redis connection failed, running without cache');
+            logger.warn('Redis connection failed, running without cache', { retries: times });
             return null;
           }
           return Math.min(times * 200, 2000);
@@ -18,14 +19,14 @@ export function getRedisClient(): Redis | null {
       });
       
       redis.on('error', (err) => {
-        console.error('Redis error:', err.message);
+        logger.error('Redis error', { error: err.message });
       });
       
       redis.on('connect', () => {
-        console.log('✓ Redis connected');
+        logger.info('Redis connected successfully');
       });
     } catch (error) {
-      console.warn('Redis not available, running without cache');
+      logger.warn('Redis not available, running without cache', { error });
       redis = null;
     }
   }
@@ -43,7 +44,7 @@ export async function getFromCache<T>(key: string): Promise<T | null> {
     }
     return null;
   } catch (error) {
-    console.error('Cache get error:', error);
+    logger.error('Cache get error', { error, key });
     return null;
   }
 }
@@ -57,7 +58,7 @@ export async function setInCache<T>(key: string, data: T, ttl?: number): Promise
     const cacheTtl = ttl || config.cache.ttl;
     await client.setex(key, cacheTtl, serialized);
   } catch (error) {
-    console.error('Cache set error:', error);
+    logger.error('Cache set error', { error, key });
   }
 }
 
@@ -68,7 +69,7 @@ export async function deleteFromCache(key: string): Promise<void> {
   try {
     await client.del(key);
   } catch (error) {
-    console.error('Cache delete error:', error);
+    logger.error('Cache delete error', { error, key });
   }
 }
 
@@ -79,7 +80,7 @@ export async function clearCache(): Promise<void> {
   try {
     await client.flushdb();
   } catch (error) {
-    console.error('Cache clear error:', error);
+    logger.error('Cache clear error', { error });
   }
 }
 
