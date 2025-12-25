@@ -1,2 +1,2 @@
-export * from './pokemonController.js';
+export * from './pokemonController';
 

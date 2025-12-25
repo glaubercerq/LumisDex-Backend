@@ -6,10 +6,10 @@ import {
   createFavorite,
   deleteFavorite,
   deleteFavoriteByPokemonId,
-} from '../services/favoriteService.js';
-import { AppError } from '../middlewares/errorHandler.js';
-import logger from '../utils/logger.js';
-import type { Favorite } from '../types/favorite.js';
+} from '../services/favoriteService';
+import { AppError } from '../middlewares/errorHandler';
+import logger from '../utils/logger';
+import type { Favorite } from '../types/favorite';
 
 export interface GetAllFavoritesResponse {
   data: Favorite[];

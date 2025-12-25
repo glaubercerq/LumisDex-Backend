@@ -5,7 +5,7 @@ import {
   addFavorite,
   removeFavorite,
   removeFavoriteByPokemonId,
-} from '../controllers/favoriteController.js';
+} from '../controllers/favoriteController';
 
 const router = Router();
 

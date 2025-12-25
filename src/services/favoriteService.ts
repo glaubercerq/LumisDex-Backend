@@ -1,7 +1,7 @@
-import { query } from './databaseService.js';
-import { config } from '../config/index.js';
-import type { Favorite, CreateFavoriteInput } from '../types/favorite.js';
-import logger from '../utils/logger.js';
+import { query } from './databaseService';
+import { config } from '../config/index';
+import type { Favorite, CreateFavoriteInput } from '../types/favorite';
+import logger from '../utils/logger';
 
 const schema = config.database.schema;
 

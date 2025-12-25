@@ -1,8 +1,8 @@
-import app from './app.js';
-import { config } from './config/index.js';
-import logger from './utils/logger.js';
-import { runMigrations } from './database/migrations/runMigrations.js';
-import { closePool } from './services/databaseService.js';
+import app from './app';
+import { config } from './config/index';
+import logger from './utils/logger';
+import { runMigrations } from './database/migrations/runMigrations';
+import { closePool } from './services/databaseService';
 
 const { port } = config;
 

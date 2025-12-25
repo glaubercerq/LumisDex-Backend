@@ -2,9 +2,9 @@ import { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { query } from '../../services/databaseService.js';
-import { config } from '../../config/index.js';
-import logger from '../../utils/logger.js';
+import { query } from '../../services/databaseService';
+import { config } from '../../config/index';
+import logger from '../../utils/logger';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

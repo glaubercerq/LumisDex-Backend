@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import pokemonRoutes from './pokemonRoutes.js';
-import favoriteRoutes from './favoriteRoutes.js';
+import pokemonRoutes from './pokemonRoutes';
+import favoriteRoutes from './favoriteRoutes';
 
 const router = Router();
 

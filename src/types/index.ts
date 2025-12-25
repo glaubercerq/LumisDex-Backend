@@ -1,4 +1,4 @@
-export * from './pokemon.js';
-export * from './dtos.js';
-export * from './favorite.js';
+export * from './pokemon';
+export * from './dtos';
+export * from './favorite';
 

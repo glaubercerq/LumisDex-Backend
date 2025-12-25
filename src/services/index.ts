@@ -1,3 +1,3 @@
-export * from './cacheService.js';
-export * from './pokemonService.js';
+export * from './cacheService';
+export * from './pokemonService';
 

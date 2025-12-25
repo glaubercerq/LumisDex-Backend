@@ -1,5 +1,5 @@
 import winston from 'winston';
-import { config } from '../config/index.js';
+import { config } from '../config/index';
 import { existsSync, mkdirSync } from 'fs';
 
 const { combine, timestamp, errors, json, printf, colorize } = winston.format;

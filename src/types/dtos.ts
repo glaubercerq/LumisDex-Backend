@@ -1,4 +1,4 @@
-import type { Pokemon, PaginatedResponse } from './pokemon.js';
+import type { Pokemon, PaginatedResponse } from './pokemon';
 
 export interface ListPokemonsResponse extends PaginatedResponse<Pokemon> {}
 
