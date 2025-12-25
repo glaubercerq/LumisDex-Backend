@@ -21,7 +21,7 @@ export interface GetFavoriteResponse extends Favorite {}
 export interface CreateFavoriteResponse extends Favorite {}
 
 export async function listFavorites(
-  req: Request,
+  _req: Request,
   res: Response<GetAllFavoritesResponse>,
   next: NextFunction
 ): Promise<void> {
