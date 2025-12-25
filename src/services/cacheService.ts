@@ -7,7 +7,7 @@ let redis: Redis | null = null;
 export function getRedisClient(): Redis | null {
   if (!redis && config.nodeEnv !== 'test') {
     try {
-      redis = new Redis(config.redis.url, {
+      redis = new Redis(config.redis.url || 'redis://localhost:6379', {
         maxRetriesPerRequest: 3,
         retryStrategy: (times) => {
           if (times > 3) {
