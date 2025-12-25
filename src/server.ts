@@ -20,7 +20,12 @@ async function startServer(): Promise<void> {
           'GET /api/health - Health check',
           'GET /api/pokemon - List Pokemon',
           'GET /api/pokemon/:id - Get Pokemon by ID',
-          'GET /api/pokemon/search - Search Pokemon'
+          'GET /api/pokemon/search - Search Pokemon',
+          'GET /api/favorites - List favorites',
+          'GET /api/favorites/:id - Get favorite by ID',
+          'POST /api/favorites - Add favorite',
+          'DELETE /api/favorites/:id - Remove favorite',
+          'DELETE /api/favorites/pokemon/:pokemonId - Remove favorite by pokemon ID'
         ]
       });
     });
