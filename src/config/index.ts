@@ -4,18 +4,18 @@ dotenv.config();
 
 export const config = {
   port: parseInt(process.env.PORT || '3001', 10),
-  nodeEnv: process.env.NODE_ENV || 'development',
+  nodeEnv: process.env.NODE_ENV,
   
   database: {
-    url: process.env.DATABASE_URL || 'postgresql://user:password@localhost:5432/lumisdex',
+    url: process.env.DATABASE_URL,
   },
   
   redis: {
-    url: process.env.REDIS_URL || 'redis://localhost:6379',
+    url: process.env.REDIS_URL,
   },
   
   pokeApi: {
-    baseUrl: process.env.POKEAPI_BASE_URL || 'https://pokeapi.co/api/v2',
+    baseUrl: process.env.POKEAPI_BASE_URL,
   },
   
   cache: {

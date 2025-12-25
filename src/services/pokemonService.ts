@@ -1,6 +1,7 @@
 import { config } from '../config/index.js';
 import { httpGet } from '../utils/httpClient.js';
 import { getFromCache, setInCache } from './cacheService.js';
+import logger from '../utils/logger.js';
 import type { 
   Pokemon, 
   PokemonApiResponse, 
@@ -30,7 +31,6 @@ function mapPokemonResponse(data: PokemonApiResponse): Pokemon {
 export async function getPokemonById(id: number): Promise<Pokemon | null> {
   const cacheKey = `pokemon:${id}`;
   
-  // Try cache first
   const cached = await getFromCache<Pokemon>(cacheKey);
   if (cached) {
     return cached;
@@ -40,12 +40,11 @@ export async function getPokemonById(id: number): Promise<Pokemon | null> {
     const data = await httpGet<PokemonApiResponse>(`${BASE_URL}/pokemon/${id}`);
     const pokemon = mapPokemonResponse(data);
     
-    // Cache the result
     await setInCache(cacheKey, pokemon);
     
     return pokemon;
   } catch (error) {
-    console.error(`Error fetching pokemon ${id}:`, error);
+    logger.error('Error fetching pokemon by ID', { error, id });
     return null;
   }
 }
@@ -67,7 +66,7 @@ export async function getPokemonByName(name: string): Promise<Pokemon | null> {
     
     return pokemon;
   } catch (error) {
-    console.error(`Error fetching pokemon ${name}:`, error);
+    logger.error('Error fetching pokemon by name', { error, name });
     return null;
   }
 }
@@ -111,7 +110,7 @@ export async function getPokemonList(
     
     return result;
   } catch (error) {
-    console.error('Error fetching pokemon list:', error);
+    logger.error('Error fetching pokemon list', { error, page, limit });
     return {
       data: [],
       total: 0,
@@ -162,7 +161,7 @@ export async function getPokemonByType(
     
     return result;
   } catch (error) {
-    console.error(`Error fetching pokemon by type ${type}:`, error);
+    logger.error('Error fetching pokemon by type', { error, type, page, limit });
     return {
       data: [],
       total: 0,
