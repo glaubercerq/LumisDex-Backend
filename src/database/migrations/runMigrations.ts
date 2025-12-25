@@ -16,7 +16,7 @@ async function ensureSchema(): Promise<void> {
 }
 
 function getMigrationsDirectory(): string {
-  return join(__dirname, 'migrations');
+  return __dirname;
 }
 
 async function getExecutedMigrations(): Promise<string[]> {
